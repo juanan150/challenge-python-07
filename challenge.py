@@ -71,15 +71,22 @@ DATA = [
     },
 ]
 
+def homeless(worker):
+    worker['homeless'] = True if worker['organization'] == '' else False
+    return worker
+
+def older_than_30(person):
+    person['old'] = True if person['age'] >30 else False
+    return person
 
 def run():
 
-    all_python_devs =  # Using filter, generate a list with all the python devs
-    all_Platzi_workers =  # Using filter, generate a list with all the Platzi workers
-    adults =  # Using filter, generate a list with all people over 18 years old
-    workers =  # Using map, generate a new list of people with a key 'homeless' with True or False values, if 'organization' have something or not
-    old_people =  # Using map, generate a new list of people with a key 'old' with True or False values, if 'age' is greater than 30 or not
-
+    all_python_devs =  list(filter(lambda x: x['language']=='python',DATA)) # Using filter, generate a list with all the python devs
+    all_Platzi_workers =  list(filter(lambda x: x['organization']=='Platzi',DATA))# Using filter, generate a list with all the Platzi workers
+    adults = list(filter(lambda x: x['age']>18,DATA))# Using filter, generate a list with all people over 18 years old
+    workers = list(map(homeless, DATA)) # Using map, generate a new list of people with a key 'homeless' with True or False values, if 'organization' have something or not
+    old_people = list(map(older_than_30, DATA)) # Using map, generate a new list of people with a key 'old' with True or False values, if 'age' is greater than 30 or not
+    
     print('Python devs: ')
     for dev in all_python_devs:
         print(dev['name'])
