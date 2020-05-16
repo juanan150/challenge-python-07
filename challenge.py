@@ -72,12 +72,14 @@ DATA = [
 ]
 
 def homeless(worker):
-    worker['homeless'] = True if worker['organization'] == '' else False
-    return worker
+    new_worker = dict(worker)
+    new_worker['homeless'] = new_worker['organization'] == ''
+    return new_worker
 
 def older_than_30(person):
-    person['old'] = True if person['age'] >30 else False
-    return person
+    new_person = dict(person)
+    new_person['old'] = new_person['age'] >30
+    return new_person
 
 def run():
 
